@@ -6,6 +6,7 @@ Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
+# Source0-md5:	6d079435fb954bb7878f4dd0d3f7b8d8
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-macro.patch
 URL:		http://www.xs4all.nl/~ripley/XmHTML/
