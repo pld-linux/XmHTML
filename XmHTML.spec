@@ -78,7 +78,7 @@ aclocal
 autoconf
 automake -a -c
 CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} \
-	-I`pwd`/include/XmHTML -I`pwd`/include/common"
+	-I`pwd`/include/XmHTML -I`pwd`/include/common \
 	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
 %configure
 
