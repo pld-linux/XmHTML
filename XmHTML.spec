@@ -9,7 +9,6 @@ Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-macro.patch
 URL:		http://www.xs4all.nl/~ripley/XmHTML/
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	lesstif-devel
@@ -33,6 +32,7 @@ Summary:	Development package of XmHTML
 Summary(pl):	Pliki nag³ówkowe XmHTML
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	lesstif-devel
 
 %description devel
 Headers needed to compile XmHTML programs.
@@ -67,6 +67,7 @@ mv -f common/*.c .
 mv -f Motif/*.c .
 )
 
+rm -f missing
 libtoolize --copy --force
 aclocal
 %{__autoconf}
@@ -91,9 +92,6 @@ install include/XmHTML/{Balloon,HTML,HTMLStrings,XCC,XmHTML}.h \
 
 rm -f html/man/man.{map,tmpl}
 
-gzip -9nf APPS BUG-REPORTING CHANGES DEBUGGING FEEDBACK FIXES \
-	README THANKS TODO docs/{QUOTES,README.*,REASONS,progressive.txt}
-
 %clean 
 rm -rf $RPM_BUILD_ROOT
 
@@ -102,7 +100,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz docs/*.gz
+%doc APPS BUG-REPORTING CHANGES DEBUGGING FEEDBACK FIXES
+%doc README THANKS TODO docs/{QUOTES,README.*,REASONS,progressive.txt}
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
