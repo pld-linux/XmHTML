@@ -2,19 +2,19 @@ Summary:	Motif HTML widget
 Summary(pl):	Widget do HTML oparty o Motif
 Name:		XmHTML
 Version:	1.1.7
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-macro.patch
 URL:		http://www.xs4all.nl/~ripley/XmHTML/
-BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
-BuildRequires:	lesstif-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	lesstif-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,7 +74,7 @@ automake -a -c -f
 CFLAGS="%{rpmcflags} \
 	-I`pwd`/include/XmHTML -I`pwd`/include/common \
 	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
-%configure
+%configure PNGINC="`pkg-config --cflags libpng12 2>/dev/null`"
 
 cd lib
 %{__make}

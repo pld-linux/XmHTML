@@ -1,6 +1,14 @@
 diff -Nur XmHTML-1.1.7.orig/configure.in XmHTML-1.1.7/configure.in
 --- XmHTML-1.1.7.orig/configure.in	Wed Feb  3 17:19:48 1999
 +++ XmHTML-1.1.7/configure.in	Sat Mar 17 22:55:03 2001
+@@ -489,6 +489,7 @@
+   for ac_dir in               \
+     /usr/include              \
+     /usr/include/png          \
++    `echo $PNGINC |sed s/-I//`\
+     /usr/local/include        \
+     /usr/png/include          \
+     /usr/unsupported/include  \
 @@ -712,32 +712,12 @@
  fi
  ])
@@ -34,6 +42,25 @@ diff -Nur XmHTML-1.1.7.orig/configure.in XmHTML-1.1.7/configure.in
 -AM_MAINTAINER_MODE
  
  AC_MSG_CHECKING(compiler flags)
+ dnl
+@@ -810,17 +811,8 @@
+ dnl Which output files do we generate ?
+ dnl
+ 
+-AC_OUTPUT(Makefile
++AC_OUTPUT(
+-book/Makefile
+-contrib/Makefile
+-examples/Makefile
+-http/Makefile
+ lib/Makefile
+-lib/common/Makefile
+-lib/compat/Makefile
+-lib/Motif/Makefile
+-lib/gtk/Makefile
+-tools/Makefile
+ )
+ 
  dnl
 diff -Nur XmHTML-1.1.7.orig/include/config.h.in XmHTML-1.1.7/include/config.h.in
 --- XmHTML-1.1.7.orig/include/config.h.in	Wed Feb  3 17:18:32 1999
