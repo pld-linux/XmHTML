@@ -2,7 +2,7 @@ Summary:	Motif HTML widget
 Summary(pl):	Widget do HTML oparty o Motif
 Name:		XmHTML
 Version:	1.1.7
-Release:	2
+Release:	3
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
@@ -65,7 +65,6 @@ mv -f common/*.c .
 mv -f Motif/*.c .
 cd ..
 
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
