@@ -30,6 +30,8 @@ Summary:	Development package of XmHTML
 Summary(pl):	Pliki nag³ówkowe XmHTML
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	libjpeg-devel
+Requires:	libpng-devel
 Requires:	motif-devel >= 1.2
 
 %description devel
