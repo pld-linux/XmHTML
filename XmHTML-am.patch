@@ -1,0 +1,70 @@
+diff -Nur XmHTML-1.1.7.orig/configure.in XmHTML-1.1.7/configure.in
+--- XmHTML-1.1.7.orig/configure.in	Wed Feb  3 17:19:48 1999
++++ XmHTML-1.1.7/configure.in	Sat Mar 17 22:55:03 2001
+@@ -712,32 +712,12 @@
+ fi
+ ])
+ 
+-AC_DEFUN(AM_MAINTAINER_MODE,
+-[AC_MSG_CHECKING([whether to enable maintainer-specific portions of Makefiles])
+-  dnl maintainer-mode is disabled by default
+-  AC_ARG_ENABLE(maintainer-mode,
+-[  --enable-maintainer-mode enable make rules and dependencies not useful
+-                          (and sometimes confusing) to the casual installer],
+-      USE_MAINTAINER_MODE=$enableval,
+-      USE_MAINTAINER_MODE=no)
+-  AC_MSG_RESULT($USE_MAINTAINER_MODE)
+-  if test $USE_MAINTAINER_MODE = yes; then
+-    MAINT=
+-  else
+-    MAINT='#M#'
+-  fi
+-  AC_SUBST(MAINT)dnl
+-]
+-)
+-
+ dnl
+ dnl End of special macros.
+ dnl
+ 
+-AM_CYGWIN32
+-AM_EMX
++AC_CYGWIN
+ AM_WITH_DMALLOC
+-AM_MAINTAINER_MODE
+ 
+ AC_MSG_CHECKING(compiler flags)
+ dnl
+diff -Nur XmHTML-1.1.7.orig/include/config.h.in XmHTML-1.1.7/include/config.h.in
+--- XmHTML-1.1.7.orig/include/config.h.in	Wed Feb  3 17:18:32 1999
++++ XmHTML-1.1.7/include/config.h.in	Sat Mar 17 22:56:34 2001
+@@ -66,7 +66,9 @@
+ #undef TIME_WITH_SYS_TIME
+ 
+ /* LessTif & automake/autoconf */
++#if 0
+ #undef VERSION
++#endif
+ 
+ #undef WITH_DMALLOC
+ 
+diff -Nur XmHTML-1.1.7.orig/lib/Makefile.am XmHTML-1.1.7/lib/Makefile.am
+--- XmHTML-1.1.7.orig/lib/Makefile.am	Wed Feb  3 17:26:57 1999
++++ XmHTML-1.1.7/lib/Makefile.am	Sat Mar 17 22:55:03 2001
+@@ -7,14 +7,14 @@
+ 
+ lib_LTLIBRARIES=libXmHTML.la
+ 
+-libXmHTML_la_LDFLAGS=
++libXmHTML_la_LDFLAGS=-L/usr/X11R6/lib -lXm -lX11 -lXext -lXt -lXpm -ljpeg -lpng -lz
+ libXmHTML_la_SOURCES= \
+ 	XmHTML.c Balloon.c XmImage.c fonts.c callbacks.c events.c frames.c \
+ 	forms.c StringUtil.c parse.c format.c layout.c paint.c colors.c \
+ 	images.c readBitmap.c readFLG.c readGIF.c readGIFplc.c readXPM.c \
+ 	readJPEG.c readJPEGplc.c readPNG.c map.c XCC.c quantize.c \
+ 	LZWStream.c plc.c error.c strings.c textsel.c output.c motif.c \
+-	public.c warnings.c private.c stack.c
++	public.c warnings.c private.c stack.c psoutput.c
+ 
+ if NLIBJPEG
+ JPEGINC =
