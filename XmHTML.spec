@@ -12,13 +12,13 @@ Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-macro.patch
 URL:		http://www.xs4all.nl/~ripley/XmHTML/
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	lesstif-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
@@ -77,9 +77,9 @@ libtoolize --copy --force
 aclocal
 autoconf
 automake -a -c
-CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
-CFLAGS="$CFLAGS -I`pwd`/include/XmHTML -I`pwd`/include/common"
-CFLAGS="$CFLAGS -DNDEBUG -Dproduction -DVERSION=1107"
+CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} \
+	-I`pwd`/include/XmHTML -I`pwd`/include/common"
+	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
 %configure
 
 cd lib
@@ -89,9 +89,7 @@ cd lib
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_includedir}/XmHTML
 
-(cd lib
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-)
+%{__make} install -C lib DESTDIR=$RPM_BUILD_ROOT
 
 install include/XmHTML/{Balloon,HTML,HTMLStrings,XCC,XmHTML}.h \
 	include/common/LZWStream.h \
@@ -100,8 +98,7 @@ install include/XmHTML/{Balloon,HTML,HTMLStrings,XCC,XmHTML}.h \
 rm -f html/man/man.{map,tmpl}
 
 gzip -9nf APPS BUG-REPORTING CHANGES DEBUGGING FEEDBACK FIXES \
-	LICENSE README THANKS TODO \
-	docs/{QUOTES,README.*,REASONS,progressive.txt}
+	README THANKS TODO docs/{QUOTES,README.*,REASONS,progressive.txt}
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
@@ -117,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc html/*
-%{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
 %{_includedir}/XmHTML
 
