@@ -12,10 +12,10 @@ Patch1:		%{name}-macro.patch
 URL:		http://www.xs4all.nl/~ripley/XmHTML/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	lesstif-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
+BuildRequires:	motif-devel >= 1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,7 +30,7 @@ Summary:	Development package of XmHTML
 Summary(pl):	Pliki nag³ówkowe XmHTML
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	lesstif-devel
+Requires:	motif-devel >= 1.2
 
 %description devel
 Headers needed to compile XmHTML programs.
