@@ -70,7 +70,7 @@ mv -f Motif/*.c .
 libtoolize --copy --force
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 CFLAGS="%{rpmcflags} \
 	-I`pwd`/include/XmHTML -I`pwd`/include/common \
 	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
