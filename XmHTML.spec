@@ -7,6 +7,7 @@ License:	LGPL
 Group:		X11/Libraries
 Group(de):	X11/Libraries
 Group(es):	X11/Bibliotecas
+Group(fr):	X11/Librairies
 Group(pl):	X11/Biblioteki
 Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am.patch
@@ -42,8 +43,8 @@ Requires:	%{name} = %{version}
 Headers needed to compile XmHTML programs.
 
 %description devel -l pl
-Pliki nag³ówkowe potrzebne do kompilowania programów korzystaj±cych
-z XmHTML.
+Pliki nag³ówkowe potrzebne do kompilowania programów korzystaj±cych z
+XmHTML.
 
 %package static
 Summary:	Static version of XmHTML library
