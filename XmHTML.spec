@@ -73,8 +73,7 @@ rm -f missing
 CFLAGS="%{rpmcflags} \
 	-I`pwd`/include/XmHTML -I`pwd`/include/common \
 	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
-%configure \
-	PNGINC="`pkg-config --cflags libpng12 2>/dev/null`"
+%configure
 
 cd lib
 %{__make}
