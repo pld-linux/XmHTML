@@ -69,7 +69,7 @@ mv -f Motif/*.c .
 
 rm -f missing
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 CFLAGS="%{rpmcflags} \
