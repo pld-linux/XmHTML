@@ -77,7 +77,7 @@ libtoolize --copy --force
 aclocal
 autoconf
 automake -a -c
-CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} \
+CFLAGS="%{rpmcflags} \
 	-I`pwd`/include/XmHTML -I`pwd`/include/common \
 	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
 %configure
