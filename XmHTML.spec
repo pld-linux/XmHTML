@@ -1,5 +1,5 @@
 Summary:	Motif HTML widget
-Summary(pl):	Widget do HTML oparty o Motif
+Summary(pl):	Widget do HTML-a oparty o Motif
 Name:		XmHTML
 Version:	1.1.7
 Release:	3
