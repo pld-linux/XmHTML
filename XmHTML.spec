@@ -91,7 +91,7 @@ install include/XmHTML/{Balloon,HTML,HTMLStrings,XCC,XmHTML}.h \
 
 rm -f html/man/man.{map,tmpl}
 
-%clean 
+%clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
