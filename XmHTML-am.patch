@@ -1,14 +1,6 @@
 diff -Nur XmHTML-1.1.7.orig/configure.in XmHTML-1.1.7/configure.in
 --- XmHTML-1.1.7.orig/configure.in	Wed Feb  3 17:19:48 1999
 +++ XmHTML-1.1.7/configure.in	Sat Mar 17 22:55:03 2001
-@@ -489,6 +489,7 @@
-   for ac_dir in               \
-     /usr/include              \
-     /usr/include/png          \
-+    `echo $PNGINC |sed s/-I//`\
-     /usr/local/include        \
-     /usr/png/include          \
-     /usr/unsupported/include  \
 @@ -712,32 +712,12 @@
  fi
  ])
