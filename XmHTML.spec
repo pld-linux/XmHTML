@@ -18,7 +18,6 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
 %description
 XmHTML provides a widget capable of displaying HTML 3.2 conforming
 text.
@@ -61,10 +60,10 @@ Statyczna wersja biblioteki XmHTML.
 # Argh! automake stuff outdated, imake stuff outdated even more,
 # makefiles not outdated but don't support shared libraries :/
 # Use automake with some patches/workarounds/etc
-(cd lib
+cd lib
 mv -f common/*.c .
 mv -f Motif/*.c .
-)
+cd ..
 
 rm -f missing
 %{__libtoolize}
@@ -74,7 +73,8 @@ rm -f missing
 CFLAGS="%{rpmcflags} \
 	-I`pwd`/include/XmHTML -I`pwd`/include/common \
 	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
-%configure PNGINC="`pkg-config --cflags libpng12 2>/dev/null`"
+%configure \
+	PNGINC="`pkg-config --cflags libpng12 2>/dev/null`"
 
 cd lib
 %{__make}
@@ -83,7 +83,8 @@ cd lib
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_includedir}/XmHTML
 
-%{__make} install -C lib DESTDIR=$RPM_BUILD_ROOT
+%{__make} install -C lib \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install include/XmHTML/{Balloon,HTML,HTMLStrings,XCC,XmHTML}.h \
 	include/common/LZWStream.h \
