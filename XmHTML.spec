@@ -29,7 +29,7 @@ XmHTML zawiera widget wy¶wietlaj±cy HTML w wersji 3.2.
 Summary:	Development package of XmHTML
 Summary(pl):	Pliki nag³ówkowe XmHTML
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	libjpeg-devel
 Requires:	libpng-devel
 Requires:	motif-devel >= 1.2
@@ -45,7 +45,7 @@ XmHTML.
 Summary:	Static version of XmHTML library
 Summary(pl):	Statyczna biblioteka XmHTML
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of XmHTML library.
