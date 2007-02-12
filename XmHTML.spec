@@ -1,5 +1,5 @@
 Summary:	Motif HTML widget
-Summary(pl.UTF-8):   Widget do HTML-a oparty o Motif
+Summary(pl.UTF-8):	Widget do HTML-a oparty o Motif
 Name:		XmHTML
 Version:	1.1.7
 Release:	4
@@ -27,7 +27,7 @@ XmHTML zawiera widget wyświetlający HTML w wersji 3.2.
 
 %package devel
 Summary:	Development package of XmHTML
-Summary(pl.UTF-8):   Pliki nagłówkowe XmHTML
+Summary(pl.UTF-8):	Pliki nagłówkowe XmHTML
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libjpeg-devel
@@ -43,7 +43,7 @@ XmHTML.
 
 %package static
 Summary:	Static version of XmHTML library
-Summary(pl.UTF-8):   Statyczna biblioteka XmHTML
+Summary(pl.UTF-8):	Statyczna biblioteka XmHTML
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
