@@ -1,5 +1,5 @@
 Summary:	Motif HTML widget
-Summary(pl):	Widget do HTML-a oparty o Motif
+Summary(pl.UTF-8):   Widget do HTML-a oparty o Motif
 Name:		XmHTML
 Version:	1.1.7
 Release:	4
@@ -22,12 +22,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 XmHTML provides a widget capable of displaying HTML 3.2 conforming
 text.
 
-%description -l pl
-XmHTML zawiera widget wy¶wietlaj±cy HTML w wersji 3.2.
+%description -l pl.UTF-8
+XmHTML zawiera widget wyÅ›wietlajÄ…cy HTML w wersji 3.2.
 
 %package devel
 Summary:	Development package of XmHTML
-Summary(pl):	Pliki nag³ówkowe XmHTML
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe XmHTML
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libjpeg-devel
@@ -37,20 +37,20 @@ Requires:	motif-devel >= 1.2
 %description devel
 Headers needed to compile XmHTML programs.
 
-%description devel -l pl
-Pliki nag³ówkowe potrzebne do kompilowania programów korzystaj±cych z
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe potrzebne do kompilowania programÃ³w korzystajÄ…cych z
 XmHTML.
 
 %package static
 Summary:	Static version of XmHTML library
-Summary(pl):	Statyczna biblioteka XmHTML
+Summary(pl.UTF-8):   Statyczna biblioteka XmHTML
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of XmHTML library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja biblioteki XmHTML.
 
 %prep
