@@ -1,0 +1,3 @@
+- use "-DNDEBUG -Dproduction" in CFLAGS depending on %{debug},
+- simplification in %install (use "-C lib" make option istead cd to lib),
+- remove LICENSE from %doc (well known license statment is in License field).
