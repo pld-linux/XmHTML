@@ -16,6 +16,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	motif-devel >= 1.2
+BuildRequires:	xorg-lib-libXpm-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
