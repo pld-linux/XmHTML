@@ -103,15 +103,16 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc APPS BUG-REPORTING CHANGES DEBUGGING FEEDBACK FIXES
 %doc README THANKS TODO docs/{QUOTES,README.*,REASONS,progressive.txt}
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libXmHTML.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libXmHTML.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %doc html/*
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libXmHTML.so
+%{_libdir}/libXmHTML.la
 %{_includedir}/XmHTML
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libXmHTML.a
