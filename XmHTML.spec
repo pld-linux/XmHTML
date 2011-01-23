@@ -76,7 +76,8 @@ cd ..
 CFLAGS="%{rpmcflags} \
 	-I`pwd`/include/XmHTML -I`pwd`/include/common \
 	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
-%configure
+%configure \
+	LIBS="-lm"
 
 cd lib
 %{__make}
