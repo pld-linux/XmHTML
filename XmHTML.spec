@@ -59,8 +59,6 @@ Statyczna wersja biblioteki XmHTML.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-
-%build
 # Argh! automake stuff outdated, imake stuff outdated even more,
 # makefiles not outdated but don't support shared libraries :/
 # Use automake with some patches/workarounds/etc
@@ -69,6 +67,7 @@ mv -f common/*.c .
 mv -f Motif/*.c .
 cd ..
 
+%build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
