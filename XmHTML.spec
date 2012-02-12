@@ -9,6 +9,7 @@ Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
 # Source0-md5:	6d079435fb954bb7878f4dd0d3f7b8d8
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-macro.patch
+Patch2:		%{name}-libpng.patch
 URL:		http://www.xs4all.nl/~ripley/XmHTML/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -59,6 +60,7 @@ Statyczna wersja biblioteki XmHTML.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 # Argh! automake stuff outdated, imake stuff outdated even more,
 # makefiles not outdated but don't support shared libraries :/
 # Use automake with some patches/workarounds/etc
