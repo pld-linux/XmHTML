@@ -1,0 +1,11 @@
+--- XmHTML-1.1.7/lib/common/parse.c.orig	1999-01-20 06:13:08.000000000 +0100
++++ XmHTML-1.1.7/lib/common/parse.c	2013-11-06 22:11:19.395801941 +0100
+@@ -1935,7 +1935,7 @@
+ 			sprintf(msg, XMHTML_MSG_128, html_tokens[id], html_tokens[current]);
+ 			break;
+ 		case HTML_INTERNAL:
+-			sprintf(msg, XMHTML_MSG_129);
++			sprintf(msg, "%s", XMHTML_MSG_129);
+ 			break;
+ 		case HTML_NOTIFY:	/* not reached */
+ 			return;

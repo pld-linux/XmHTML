@@ -2,7 +2,7 @@ Summary:	Motif HTML widget
 Summary(pl.UTF-8):	Widget do HTML-a oparty o Motif
 Name:		XmHTML
 Version:	1.1.7
-Release:	13
+Release:	14
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
@@ -10,6 +10,7 @@ Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-macro.patch
 Patch2:		%{name}-libpng.patch
+Patch3:		format-security.patch
 URL:		http://www.xs4all.nl/~ripley/XmHTML/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -61,6 +62,7 @@ Statyczna wersja biblioteki XmHTML.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 # Argh! automake stuff outdated, imake stuff outdated even more,
 # makefiles not outdated but don't support shared libraries :/
 # Use automake with some patches/workarounds/etc
