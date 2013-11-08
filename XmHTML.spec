@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Widget do HTML-a oparty o Motif
 Name:		XmHTML
 Version:	1.1.7
 Release:	14
-License:	LGPL
+License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
 # Source0-md5:	6d079435fb954bb7878f4dd0d3f7b8d8
