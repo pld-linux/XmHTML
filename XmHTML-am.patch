@@ -40,7 +40,7 @@ diff -Nur XmHTML-1.1.7.orig/configure.in XmHTML-1.1.7/configure.in
  dnl
  
 -AC_OUTPUT(Makefile
-+AC_OUTPUT(
++AC_OUTPUT(Makefile
 -book/Makefile
 -contrib/Makefile
 -examples/Makefile
@@ -54,36 +54,50 @@ diff -Nur XmHTML-1.1.7.orig/configure.in XmHTML-1.1.7/configure.in
  )
  
  dnl
-diff -Nur XmHTML-1.1.7.orig/include/config.h.in XmHTML-1.1.7/include/config.h.in
---- XmHTML-1.1.7.orig/include/config.h.in	Wed Feb  3 17:18:32 1999
-+++ XmHTML-1.1.7/include/config.h.in	Sat Mar 17 22:56:34 2001
-@@ -66,7 +66,9 @@
- #undef TIME_WITH_SYS_TIME
- 
- /* LessTif & automake/autoconf */
-+#if 0
- #undef VERSION
-+#endif
- 
- #undef WITH_DMALLOC
- 
-diff -Nur XmHTML-1.1.7.orig/lib/Makefile.am XmHTML-1.1.7/lib/Makefile.am
---- XmHTML-1.1.7.orig/lib/Makefile.am	Wed Feb  3 17:26:57 1999
-+++ XmHTML-1.1.7/lib/Makefile.am	Sat Mar 17 22:55:03 2001
-@@ -7,14 +7,14 @@
+--- XmHTML-1.1.10/lib/Makefile.am.orig	2015-10-26 11:22:55.111545877 +0100
++++ XmHTML-1.1.10/lib/Makefile.am	2018-05-13 11:22:53.264190849 +0200
+@@ -7,14 +7,29 @@
  
  lib_LTLIBRARIES=libXmHTML.la
  
 -libXmHTML_la_LDFLAGS=
-+libXmHTML_la_LDFLAGS=-L/usr/X11R6/lib -lXm -lX11 -lXext -lXt -lXpm -ljpeg -lpng -lz
- libXmHTML_la_SOURCES= \
- 	XmHTML.c Balloon.c XmImage.c fonts.c callbacks.c events.c frames.c \
- 	forms.c StringUtil.c parse.c format.c layout.c paint.c colors.c \
- 	images.c readBitmap.c readFLG.c readGIF.c readGIFplc.c readXPM.c \
- 	readJPEG.c readJPEGplc.c readPNG.c map.c XCC.c quantize.c \
- 	LZWStream.c plc.c error.c strings.c textsel.c output.c motif.c \
+-libXmHTML_la_SOURCES= \
+-	XmHTML.c Balloon.c XmImage.c fonts.c callbacks.c events.c frames.c \
+-	forms.c StringUtil.c parse.c format.c layout.c paint.c colors.c \
+-	images.c readBitmap.c readFLG.c readGIF.c readGIFplc.c readXPM.c \
+-	readJPEG.c readJPEGplc.c readPNG.c map.c XCC.c quantize.c \
+-	LZWStream.c plc.c error.c strings.c textsel.c output.c motif.c \
 -	public.c warnings.c private.c stack.c
-+	public.c warnings.c private.c stack.c psoutput.c
++libXmHTML_la_LIBADD=-lXm -lX11 -lXext -lXt -lXpm -ljpeg -lpng -lz
++# COMMONSRCS from common/Makefile (with common/ prefix)
++common_srcs= \
++	common/events.c common/hash.c common/stack.c common/format.c common/fonts.c common/paint.c common/readXPM.c \
++	common/readJPEGplc.c common/quantize.c common/colors.c common/private.c common/readBitmap.c common/public.c \
++	common/readPNG.c common/readGIFplc.c common/readGIF.c common/error.c common/callbacks.c common/StringUtil.c \
++	common/images.c common/readFLG.c common/readJPEG.c common/parse.c common/map.c common/layout.c common/LZWStream.c \
++	common/psoutput.c
++# MOTIFSRCS from Motif/Makefile (with Motif/ prefix)
++motif_srcs= \
++	Motif/motif.c Motif/XmHTML.c Motif/output.c Motif/XmImage.c Motif/plc.c Motif/frames.c Motif/textsel.c \
++	Motif/forms.c Motif/XCC.c Motif/Balloon.c Motif/warnings.c Motif/strings.c
++	XmHTML.c Balloon.c XmImage.c fonts.c callbacks.c events.c frames.c
++libXmHTML_la_SOURCES= $(common_srcs) $(motif_srcs)
++common_hdrs= \
++	../include/common/LZWStream.h
++motif_hdrs= \
++	../include/XmHTML/Balloon.h \
++	../include/XmHTML/HTML.h \
++	../include/XmHTML/HTMLStrings.h \
++	../include/XmHTML/XCC.h \
++	../include/XmHTML/XmHTML.h
++pkginclude_HEADERS = $(common_hdrs) $(motif_hdrs)
  
  if NLIBJPEG
  JPEGINC =
+@@ -36,5 +51,5 @@
+ 
+ IMAGEINC= $(JPEGINC) $(PNGINC) $(ZLIBINC)
+ 
+-INCLUDES= -I$(top_srcdir)/include ${X_CFLAGS} -I@motif_includes@ $(IMAGEINC)
++INCLUDES= -I$(top_srcdir)/include -I$(top_srcdir)/include/XmHTML -I$(top_srcdir)/include/common ${X_CFLAGS} -I@motif_includes@ $(IMAGEINC)
+ 

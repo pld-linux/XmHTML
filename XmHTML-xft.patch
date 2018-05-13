@@ -1,0 +1,15 @@
+--- XmHTML-1.1.10/configure.in.orig	2018-05-13 18:51:13.253883702 +0200
++++ XmHTML-1.1.10/configure.in	2018-05-13 20:49:17.563802811 +0200
+@@ -770,6 +770,12 @@
+ AC_PATH_PNG
+ AC_PATH_ZLIB
+ 
++AC_ARG_WITH(xft, [  --with-xft              enable Xft usage])
++if test "x$with_xft" = xyes; then
++	PKG_CHECK_MODULES([XFT], [xft])
++	AC_DEFINE([HAVE_XFT], [1], [Have Xft library])
++fi
++
+ AM_CONDITIONAL(NLIBJPEG, test "x$no_jpeg" = xyes)
+ AM_CONDITIONAL(NLIBPNG, test "x$no_png" = xyes)
+ AM_CONDITIONAL(NLIBZ, test "x$no_zlib" = xyes)

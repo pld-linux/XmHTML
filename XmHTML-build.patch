@@ -1,0 +1,64 @@
+--- XmHTML-1.1.10/lib/Motif/XCC.c.orig	2015-10-26 11:22:55.113545877 +0100
++++ XmHTML-1.1.10/lib/Motif/XCC.c	2018-05-13 21:33:04.770439480 +0200
+@@ -124,6 +124,9 @@
+ #include <X11/Xatom.h>
+ #include <X11/Intrinsic.h>
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
+ #ifdef DMALLOC
+ #include "dmalloc.h"
+ #endif
+@@ -131,6 +134,10 @@
+ #include "toolkit.h"
+ #include XmHTMLPrivateHeader
+ #include "XCCP.h"
++#include "XmHTMLconf.h"
++#include "debug.h"
++
++#define MEMBER_CLASS class
+ 
+ /*** External Function Prototype Declarations ***/
+ 
+@@ -360,7 +367,9 @@
+ {
+ 	XColor color;
+ 
++#ifdef DEBUG
+ 	_XmHTMLWarning(__WFUNC__(NULL, "_initBW"), XMHTML_MSG_5);
++#endif
+ 
+ 	_xcc->mode = MODE_BW;
+ 
+@@ -731,7 +740,9 @@
+ 			((xcc->visual != DefaultVisual(_dpy, DefaultScreen(_dpy))) &&
+ 			_colormap == DefaultColormap(_dpy, DefaultScreen(_dpy))))
+ 		{
++#ifdef DEBUG
+ 			_XmHTMLWarning(__WFUNC__(w, "XCCCreate"), XMHTML_MSG_6);
++#endif
+ 			xcc->colormap = XCreateColormap(_dpy, 
+ 					RootWindow(_dpy, DefaultScreen(_dpy)), xcc->visual, 
+ 					AllocNone);
+@@ -1455,7 +1466,9 @@
+ 	/* see if the colormap has any colors to read */
+ 	if(cmapsize < 1)
+ 	{
++#ifdef DEBUG
+ 		_XmHTMLWarning(__WFUNC__(NULL, "XCCGetPixels"), XMHTML_MSG_7);
++#endif
+ 		return;
+ 	}
+ #ifdef DEBUG
+@@ -1711,8 +1724,10 @@
+ 
+ 	if(cmapsize < 0)
+ 	{
++#ifdef DEBUG
+ 		_XmHTMLWarning(__WFUNC__(NULL, "XCCGetPixelsIncremental"),
+ 			XMHTML_MSG_7);
++#endif
+ 		return;
+ 	}
+ #ifdef DEBUG

@@ -1,23 +1,30 @@
+# Note: upstream automake stuff is outdated, imake stuff outdated even more,
+# plain Makefiles not outdated but messy.
+# Use automake with some patches.
+#
+# Conditional build:
+%bcond_without	xft	# Xft support
+
 Summary:	Motif HTML widget
 Summary(pl.UTF-8):	Widget do HTML-a oparty o Motif
 Name:		XmHTML
-Version:	1.1.7
-Release:	15
+Version:	1.1.10
+Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://www.xs4all.nl/~ripley/XmHTML/dist/%{name}-%{version}.tar.gz
-# Source0-md5:	6d079435fb954bb7878f4dd0d3f7b8d8
+Source0:	http://downloads.sourceforge.net/xmhtml/%{name}-%{version}.tgz
+# Source0-md5:	fd339d59d020da2ccf6e92bf65b810e2
 Patch0:		%{name}-am.patch
-Patch1:		%{name}-macro.patch
-Patch2:		%{name}-libpng.patch
-Patch3:		format-security.patch
-URL:		http://www.xs4all.nl/~ripley/XmHTML/
+Patch1:		%{name}-build.patch
+Patch2:		%{name}-xft.patch
+URL:		https://sourceforge.net/projects/xmhtml/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	motif-devel >= 1.2
+%{?with_xft:BuildRequires:	xorg-lib-libXft-devel}
 BuildRequires:	xorg-lib-libXmu-devel
 BuildRequires:	xorg-lib-libXpm-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -37,6 +44,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	libjpeg-devel
 Requires:	libpng-devel
 Requires:	motif-devel >= 1.2
+%{?with_xft:Requires:	xorg-lib-libXft-devel}
 
 %description devel
 Headers needed to compile XmHTML programs.
@@ -62,41 +70,25 @@ Statyczna wersja biblioteki XmHTML.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-# Argh! automake stuff outdated, imake stuff outdated even more,
-# makefiles not outdated but don't support shared libraries :/
-# Use automake with some patches/workarounds/etc
-cd lib
-mv -f common/*.c .
-mv -f Motif/*.c .
-cd ..
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-CFLAGS="%{rpmcflags} \
-	-I`pwd`/include/XmHTML -I`pwd`/include/common \
-	%{!?debug:-DNDEBUG -Dproduction} -DVERSION=1107"
+%{!?debug:CPPFLAGS="%{rpmcppflags} -DNDEBUG -Dproduction"}
 %configure \
-	LIBS="-lm"
+	%{?with_xft:--with-xft}
 
-cd lib
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_includedir}/XmHTML
 
-%{__make} install -C lib \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install include/XmHTML/{Balloon,HTML,HTMLStrings,XCC,XmHTML}.h \
-	include/common/LZWStream.h \
-	$RPM_BUILD_ROOT%{_includedir}/XmHTML
-
-rm -f html/man/man.{map,tmpl}
+%{__rm} html/man/man.{map,tmpl}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -106,8 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc APPS BUG-REPORTING CHANGES DEBUGGING FEEDBACK FIXES
-%doc README THANKS TODO docs/{QUOTES,README.*,REASONS,progressive.txt}
+%doc APPS BUG-REPORTING CHANGES Changelog.txt DEBUGGING FEEDBACK FIXES LICENSE README THANKS TODO docs/{QUOTES,README.*,REASONS,progressive.txt}
 %attr(755,root,root) %{_libdir}/libXmHTML.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libXmHTML.so.0
 
